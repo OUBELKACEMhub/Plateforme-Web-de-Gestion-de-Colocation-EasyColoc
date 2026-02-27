@@ -4,24 +4,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+
+
 class Invitation extends Model
 {
-    protected $fillable = [
-        'email',
-        'token',
-        'expires_at',
-        'status',
+protected $fillable = [
         'colocation_id',
-        'sender_id'
+        'email',
+        'token',        
+        'expires_at',   
+        'sender_id',
+        'status',
     ];
-
-    public function colocation(): BelongsTo
-    {
-        return $this->belongsTo(Colocation::class);
-    }
-
-    public function sender(): BelongsTo
+    public function sender()
     {
         return $this->belongsTo(User::class, 'sender_id');
+    }
+
+    public function colocation()
+    {
+        return $this->belongsTo(Colocation::class);
     }
 }
