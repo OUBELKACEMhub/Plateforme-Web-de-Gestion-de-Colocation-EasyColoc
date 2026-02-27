@@ -39,10 +39,11 @@ class RegisteredUserController extends Controller
             'is_global_admin' => $isFirstUser, 
             'role' => $isFirstUser ? 'admin' : 'member', 
             
-            'reputation_score' => $isFirstUser ? 100 : 0, 
+            'reputation_score' => 100 , 
             'is_banned' => false,
         ]);
 
+       
         event(new Registered($user));
 
         Auth::login($user);
