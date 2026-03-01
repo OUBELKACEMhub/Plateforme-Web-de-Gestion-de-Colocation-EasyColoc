@@ -21,4 +21,10 @@ class Colocation extends Model
                 ->withPivot('role', 'joined_at', 'left_at') 
                 ->withTimestamps();
 }
+
+
+public function expenses()
+{
+    return $this->hasMany(Expense::class);
+}
 }
