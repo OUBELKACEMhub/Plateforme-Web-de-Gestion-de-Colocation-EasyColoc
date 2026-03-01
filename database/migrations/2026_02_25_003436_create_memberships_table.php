@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('memberships', function (Blueprint $table) {
+     Schema::create('memberships', function (Blueprint $table) {
     $table->id();
     $table->foreignId('user_id')->constrained()->onDelete('cascade');
     $table->foreignId('colocation_id')->constrained()->onDelete('cascade');
-    $table->datetime('joined_at');
-    $table->datetime('left_at')->nullable();
-    $table->enum('role', ['owner', 'Membre']);
+    $table->string('role')->default('Membre');
+    $table->string('status')->default('active'); 
+    $table->timestamp('joined_at')->nullable();
+    $table->timestamp('left_at')->nullable(); 
     $table->timestamps();
 });
     }
