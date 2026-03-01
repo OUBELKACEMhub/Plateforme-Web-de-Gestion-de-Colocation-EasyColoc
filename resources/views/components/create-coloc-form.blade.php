@@ -14,7 +14,8 @@
         <div class="space-y-2">
             <x-input-label for="name" :value="__('Nom de la Colocation')" class="dark:text-slate-300 font-bold ml-1 text-xs" />
             <x-text-input id="name" name="name" type="text" 
-                class="block w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border-slate-200/60 dark:border-white/5 rounded-2xl focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF750F] transition-all" 
+                {{-- بيرينا dark:text-black بـ dark:text-white --}}
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border-slate-200/60 dark:border-white/5 text-slate-900 dark:text-white rounded-2xl focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF750F] transition-all outline-none" 
                 placeholder="Ex: Appartement Rabat Centre" required />
         </div>
 
@@ -22,7 +23,7 @@
         <div class="space-y-2">
             <x-input-label for="description" :value="__('Description')" class="dark:text-slate-300 font-bold ml-1 text-xs" />
             <textarea id="description" name="description" 
-                class="block w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border-slate-200/60 dark:border-white/5 text-slate-900 dark:text-white rounded-2xl focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF750F] transition-all min-h-[100px] text-sm" 
+                class="block w-full px-4 py-3 bg-slate-50 dark:bg-white/5 border-slate-200/60 dark:border-white/5 text-slate-900 dark:text-white rounded-2xl focus:ring-2 focus:ring-orange-500/20 focus:border-[#FF750F] transition-all min-h-[100px] text-sm outline-none" 
                 placeholder="Décrivez l'ambiance, les règles, etc..." required></textarea>
         </div>
 

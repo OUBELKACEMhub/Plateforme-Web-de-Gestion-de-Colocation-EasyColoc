@@ -38,7 +38,7 @@
                             </svg>
                         </div>
                         <input type="email" name="email" id="email" required value="{{ old('email') }}"
-                               placeholder="exemple@mail.com"
+                               placeholder="leomessi@gmail.com"
                                class="w-full pl-14 pr-6 py-5 bg-slate-50 dark:bg-white/[0.03] border-2 border-transparent rounded-[1.5rem] focus:ring-0 focus:border-[#FF750F] text-slate-900 dark:text-white font-bold transition-all placeholder:text-slate-400 placeholder:font-medium italic">
                     </div>
                     @error('email')
@@ -50,9 +50,7 @@
                     <button type="submit" 
                             class="w-full sm:flex-1 flex items-center justify-center gap-3 px-8 py-5 bg-[#FF750F] hover:bg-[#FF852D] text-white font-black rounded-2xl shadow-xl shadow-orange-500/30 transition-all active:scale-[0.98] uppercase italic tracking-tighter group">
                         <span>Envoyer l'invitation</span>
-                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-                        </svg>
+                        
                     </button>
                     
                     <a href="{{ route('dashboard') }}" 
