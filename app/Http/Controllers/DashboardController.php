@@ -6,13 +6,10 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
-{
-    $activeColocation = auth()->user()->colocations()
-        ->wherePivotNull('left_at')
-        ->with(['users' => function($query) {
-            $query->withPivot('role', 'joined_at');
-        }])
+    public function index() {
+    $activeColocation = Auth::user()->colocations()
+        ->with(['users', 'expenses.payer', 'expenses.categorie']) 
+        ->where('colocations.status', 'active')
         ->first();
 
     return view('dashboard', compact('activeColocation'));
