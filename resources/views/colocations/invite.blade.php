@@ -7,5 +7,6 @@
         
         <x-invite-member-form :colocation="$colocation" />
 
+        
     </div>
 @endsection
