@@ -18,8 +18,11 @@ class InvitationController extends Controller
             ->latest()
             ->get();
 
-        return view('colocations.received', compact('receivedInvitations'));
+
+return view('colocations.received', compact('receivedInvitations'));
     }
+
+    
 
  
    public function accept(Invitation $invitation)
@@ -32,22 +35,32 @@ class InvitationController extends Controller
         return back()->with('error', "Cette invitation a déjà été traitée.");
     }
 
+    $alreadyMember = DB::table('memberships')
+        ->where('colocation_id', $invitation->colocation_id)
+        ->where('user_id', auth()->id())
+        ->whereNull('left_at') 
+        ->exists();
+
+    if ($alreadyMember) {
+        $invitation->update(['status' => 'accepted']); 
+        return redirect()->route('dashboard')->with('info', "Vous êtes déjà membre de cette colocation.");
+    }
+
     try {
         DB::transaction(function () use ($invitation) {
             $invitation->update(['status' => 'accepted']);
 
             DB::table('memberships')->insert([
-    'colocation_id' => $invitation->colocation_id,
-    'user_id'       => auth()->id(),
-    'role'          => 'Membre',
-    'joined_at'     => now(),
-    'created_at'    => now(), 
-    'updated_at'    => now(), 
-]);
+                'colocation_id' => $invitation->colocation_id,
+                'user_id'       => auth()->id(),
+                'role'          => 'Membre',
+                'status'        => 'active', // تأكد من إضافة الـ status اللي صلحنا قبيلة
+                'joined_at'     => now(),
+                'created_at'    => now(), 
+                'updated_at'    => now(), 
+            ]);
 
-            DB::table('users')
-                ->where('id', $invitation->sender_id)
-                ->increment('reputation_score', 50);
+            
         });
 
         return redirect()->route('dashboard')->with('success', "Félicitations ! Vous avez rejoint la colocation.");
