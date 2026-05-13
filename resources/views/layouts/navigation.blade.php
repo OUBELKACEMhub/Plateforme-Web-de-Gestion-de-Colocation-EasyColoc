@@ -24,7 +24,7 @@
                 @php
                     $pendingCount = \App\Models\Invitation::where('email', Auth::user()->email)->where('status', 'pending')->count();
                 @endphp
-                <a href="{{ route('colocations.received') }}" class="relative p-2 text-slate-500 hover:text-[#FF750F] bg-slate-50 dark:bg-white/5 hover:bg-orange-50 dark:hover:bg-orange-500/10 rounded-xl border border-slate-200/60 dark:border-white/5 transition-all duration-200">
+                <a href="{{ route('invitations.received') }}" class="relative p-2 text-slate-500 hover:text-[#FF750F] bg-slate-50 dark:bg-white/5 hover:bg-orange-50 dark:hover:bg-orange-500/10 rounded-xl border border-slate-200/60 dark:border-white/5 transition-all duration-200">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                     </svg>
@@ -88,13 +88,12 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <!-- Mobile Notification Link -->
-            <x-responsive-nav-link :href="route('colocations.received')" class="font-bold flex items-center gap-2">
-                🔔 Invitations
-                @if($pendingCount > 0)
-                    <span class="ml-1 px-1.5 py-0.5 bg-[#FF750F] text-white text-[9px] font-black rounded-full">{{ $pendingCount }}</span>
-                @endif
-            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('invitations.received')" :active="request()->routeIs('invitations.received')" class="font-bold flex items-center gap-2">
+    🔔 Invitations
+    @if($pendingCount > 0)
+        <span class="ml-1 px-1.5 py-0.5 bg-[#FF750F] text-white text-[9px] font-black rounded-full animate-pulse">{{ $pendingCount }}</span>
+    @endif
+</x-responsive-nav-link>
         </div>
 
         <div class="pt-4 pb-1 border-t border-slate-100 dark:border-white/5">

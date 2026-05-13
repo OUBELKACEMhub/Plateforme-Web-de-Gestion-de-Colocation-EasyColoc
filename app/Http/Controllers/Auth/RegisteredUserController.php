@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'is_global_admin' => $isFirstUser, 
             'role' => $isFirstUser ? 'admin' : 'member', 
             
-            'reputation_score' => 100 , 
+            'reputation_score' => 1 , 
             'is_banned' => false,
         ]);
 

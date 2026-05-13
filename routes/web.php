@@ -46,7 +46,6 @@ Route::middleware(['auth', 'verified', 'banned'])->group(function () {
     });
 
     
-
     Route::prefix('invitations')->as('invitations.')->group(function () {
     Route::get('/received', [InvitationController::class, 'receivedInvitations'])->name('received');
     Route::patch('/{invitation}/accept', [InvitationController::class, 'accept'])->name('accept');
@@ -56,9 +55,6 @@ Route::middleware(['auth', 'verified', 'banned'])->group(function () {
 Route::middleware(['can:admin-access'])->prefix('admin')->as('admin.')->group(function () {
     Route::get('/users', [AdminController::class, 'users'])->name('users.index');
 Route::patch('/users/{user}/toggle-ban', [AdminController::class, 'toggleBan'])->name('users.toggle-ban');});
-
-
-
 
 
 });

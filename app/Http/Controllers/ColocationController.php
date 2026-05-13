@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Colocation;
 use App\Models\Membership;
+use App\Models\Settlement;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -193,9 +194,6 @@ public function removeMember(Colocation $colocation, User $user)
 
     return back()->with('success', "Le membre {$user->name} a été retiré de la colocation.");
 }
-
-
-
 
 
 public function destroy(Colocation $colocation)
